@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- context:指定generator运行环境-->
+    <context id="db0Tables" targetRuntime="MyBatis3Simple">
+        <!-- 数据库连接 -->
+        <jdbcConnection
+                driverClass="com.mysql.cj.jdbc.Driver"
+                connectionURL="jdbc:mysql://192.168.51.205:3306/ykb_area?useSSL=FALSE&serverTimezone=Asia/Shanghai"
+                userId="root"
+                password="000000">
+        </jdbcConnection>
+
+        <!-- 类型解析器 -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true" />
+        </javaTypeResolver>
+
+        <!-- javaBean生成策略 targetPackage： javaBean生成路径； targetProject: 目标工程 -->
+        <javaModelGenerator targetPackage="com.Entity" targetProject=".\src">
+            <property name="enableSubPackages" value="true"></property>
+            <property name="trimStrings" value="true"></property>
+        </javaModelGenerator>
+
+        <!-- mapper 映射文件生成地址 -->
+        <sqlMapGenerator targetPackage="com.Dao" targetProject=".\src">
+            <property name="enableSubPackages" value="true"></property>
+        </sqlMapGenerator>
+
+        <!-- javaClientGenerator 客户端代码生成器位置，指定Mapper接口所在位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.Dao" targetProject=".\src">
+            <property name="enableSubPackages" value="true"></property>
+        </javaClientGenerator>
+
+        <!-- 指定数据库中的表 -->
+        <table tableName="base_country" domainObjectName="Country"></table>
+        <table tableName="base_state" domainObjectName="State"></table>
+        <table tableName="base_city" domainObjectName="City"></table>
+
+    </context>
+
+</generatorConfiguration>
